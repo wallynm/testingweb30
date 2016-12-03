@@ -58,17 +58,4 @@ describe('Form component', function() {
       browser.pause(2000);
     });
   });
-
-  describe('Regression test', function(){
-    it('Should render form page correctly', function(done){
-      browser.url('/forms.html')
-      .webdrivercss('form', {
-        name: 'form',
-        elem: '.mdl-card form'
-      }, function(err,res) {
-          res.header[0].isWithinMisMatchTolerance.should.be.ok;
-      })
-      .call(done);
-    });
-  })
 });
