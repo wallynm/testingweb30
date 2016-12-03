@@ -1,0 +1,3 @@
+describe('Sidebar Component', function(){
+
+});
