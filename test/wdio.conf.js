@@ -72,10 +72,11 @@ exports.config = {
     //
     // Set a base URL in order to shorten url command calls. If your url parameter starts
     // with "/", then the base url gets prepended.
-    baseUrl: 'http://localhost/testingweb30/project/',
+    baseUrl: 'http://localhost/testingweb30/project',
+    // baseUrl: 'http://wallynm.github.io/projects/testingweb30',
     //
     // Default timeout for all waitFor* commands.
-    waitforTimeout: 100000,
+    waitforTimeout: 5000,
     //
     // Default timeout in milliseconds for request
     // if Selenium Grid doesn't send response
@@ -132,7 +133,7 @@ exports.config = {
 
     before: function() {
         require('./util.js');
-        browser.setViewportSize({ width: 1024, height: 700 }, true);
+        browser.setViewportSize({ width: 1600, height: 700 }, true);
     },
     // Hook that gets executed before the suite starts
     // beforeSuite: function (suite) {

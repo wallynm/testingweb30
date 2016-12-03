@@ -1,19 +1,21 @@
 describe('Todo list component', function() {
+  before(function() {
+    browser.url('/');
+  });
+  
   describe('Basic rendering', function() {
     it('Should render title correctly', function() {
-      browser.url('/');
       browser.getText('.card-todo .mdl-card__title').should.be.equal("To-do list");
     });
 
-    it('Should render 5 items', function() {
+    it('Should render 4 items', function() {
       var items = browser.elements('.card-todo .mdl-list__item').value;
       items.should.have.length.of(4);
     });
 
-
     it('Should render 5 items --- Just a sample error', function() {
-      var items = browser.elements('.card-todo .legend .legend__item').value;
-      items.should.have.length.of(4);
+      var items = browser.elements('.card-todo .mdl-list__item').value;
+      items.should.have.length.of(5);
     });
 
     it('Should bring selected item', function() {
@@ -21,11 +23,11 @@ describe('Todo list component', function() {
     });
 
     it('Should have an remove button', function(){
-      browser.isVisible('.card-todo .button-add').should.be.true;
+      browser.isVisible('.card-todo .button-remove').should.be.true;
     });
 
     it('Should have an add button', function(){
-      browser.isVisible('.card-todo .button-remove').should.be.true;
+      browser.isVisible('.card-todo .button-add').should.be.true;
     });
   });
 
@@ -46,12 +48,18 @@ describe('Todo list component', function() {
     });
 
     it('Should able to insert a new task on "Enter" key', function() {
+      browser.url('/');
       // Armazeno quantos itens existia antes de inserir
       var list = browser.elements('.card-todo .mdl-list__item label .mdl-checkbox__label').value.length;
 
+      browser.click('.card-todo .button-add');
+      browser.pause(1000);
+
       browser.setValue('.card-todo .mdl-list__item .mdl-textfield__input', 'New task for implement tests on the fly!');
       browser.pause(1000);
+
       browser.keys(['Enter']);
+      browser.pause(1000);
 
       var newList = browser.elements('.card-todo .mdl-list__item label .mdl-checkbox__label').value.length;
 
@@ -81,9 +89,25 @@ describe('Todo list component', function() {
     });
 
     it('Should be able to remove multiple tasks on "Remove button"', function() {
-    
+      var uncheckedSize = browser.elements('.card-todo .mdl-list__item label .mdl-checkbox__label').value.length;
+
+      for(var i = 1; i < uncheckedSize + 1; i++){
+        if(browser.getAttribute('.card-todo .mdl-list__item:nth-child('+i+') input[type=checkbox]', 'checked') != 'true'){
+          browser.click('.card-todo .mdl-list__item:nth-child('+i+') .mdl-checkbox__ripple-container');
+          browser.pause(1000);
+        }
+      }
+      
+      browser.click('.card-todo .button-remove');
+      browser.pause(2000);
+      browser.elements('.card-todo .mdl-list__item label .mdl-checkbox__label').isVisible().should.be.false;
     });
 
-    it('Should remove task clicking on "Close" icon')
+    it('Should reload all tasks on refresh', function() {
+      browser.refresh();
+      var items = browser.elements('.card-todo .mdl-list__item').value;
+      browser.pause(1000);
+      items.should.have.length.of(4);
+    });
   })
 });
