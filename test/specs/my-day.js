@@ -1,6 +1,9 @@
 describe('My-day Component', function(){
-  it('Should render title correctly', function() {
+  before(function() {
     browser.url('/');
+  });
+  
+  it('Should render title correctly', function() {
     browser.getText('.card-pie .mdl-card__title').should.be.equal("My Day");
   });
 
