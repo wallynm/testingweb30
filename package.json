@@ -6,8 +6,11 @@
   "dependencies": {
     "backbone-class": "0.0.2",
     "chance": "^1.0.4",
+    "install": "^0.8.2",
     "javascript-detect-element-resize": "^0.5.3",
     "lodash": "^4.13.1",
+    "npm": "^4.0.3",
+    "webdrivercss": "^1.1.10",
     "webdriverio": "^4.2.16"
   },
   "devDependencies": {

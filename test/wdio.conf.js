@@ -46,8 +46,8 @@ exports.config = {
         // maxInstances can get overwritten per capability. So if you have an in-house Selenium
         // grid with only 5 firefox instance available you can make sure that not more than
         // 5 instance gets started at a time.
-        maxInstances: 5,
-        //
+        maxInstances: 1,
+        // maxInstances: 5,
         browserName: 'chrome',
     }],
     //
@@ -92,16 +92,16 @@ exports.config = {
     // WebdriverCSS: https://github.com/webdriverio/webdrivercss
     // WebdriverRTC: https://github.com/webdriverio/webdriverrtc
     // Browserevent: https://github.com/webdriverio/browserevent
-    // plugins: {
-    //     webdrivercss: {
-    //         screenshotRoot: 'my-shots',
-    //         failedComparisonsRoot: 'diffs',
-    //         misMatchTolerance: 0.05,
-    //         screenWidth: [320,480,640,1024]
-    //     },
-    //     webdriverrtc: {},
-    //     browserevent: {}
-    // },
+    plugins: {
+        webdrivercss: {
+            screenshotRoot: 'my-shots',
+            failedComparisonsRoot: 'diffs',
+            misMatchTolerance: 0.05,
+            screenWidth: [320,480,640,1024]
+        },
+        // webdriverrtc: {},
+        // browserevent: {}
+    },
     //
     // Test runner services
     // Services take over a specific job you don't want to take care of. They enhance
@@ -132,7 +132,6 @@ exports.config = {
     },
 
     before: function() {
-        require('./util.js');
         browser.setViewportSize({ width: 1600, height: 700 }, true);
     },
     // Hook that gets executed before the suite starts

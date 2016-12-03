@@ -10,6 +10,6 @@ describe('Trending component', function() {
 
     it('Should render 5 items', function(){
       browser.elements('.card-treding .mdl-list .mdl-list__item').value.should.have.length.of(5);
-    })
+    });
   });
 });
